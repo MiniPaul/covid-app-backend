@@ -4,13 +4,17 @@ const patientAddModel=require("../Models/PatientAddModel")
 const router=express.Router()
 
 router.post("/add",async(req,res)=>{
-    let data=req.body//read
+    let data=req.body
     let patient=new patientAddModel(data)
     let result=await patient.save()
     res.json({
         status:"success"
     })
-  
+})
+
+router.get("/viewall",async(req,res)=>{
+    let data=await patientAddModel.find()
+    res.json(data)
 })
 
 
